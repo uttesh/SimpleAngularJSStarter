@@ -9,14 +9,13 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // configurable paths
-  var appConfig = {
+  var AppConfig = {
     app: 'app',
     dist: 'dist'
   };
 
-
   grunt.initConfig({
-    rivet: appConfig,
+    rivet: AppConfig,
     watch: {
 
       livereload: {
@@ -29,6 +28,16 @@ module.exports = function (grunt) {
         tasks: ['livereload']
       }
     },
+	  bower : {
+            install : {
+                options : {
+                    targetDir : 'lib',
+                    cleanup : false,            
+                    layout : 'byComponent',    
+                    verbose : true,            
+                },
+            },
+        },
     connect: {
       options: {
         port: 9000,
@@ -41,7 +50,7 @@ module.exports = function (grunt) {
             return [
               lrSnippet,
               mountFolder(connect, '.tmp'),
-              mountFolder(connect, appConfig.app)
+              mountFolder(connect, AppConfig.app)
             ];
           }
         }
@@ -213,6 +222,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('server', [
     'clean:server',
+	'copy',
     'livereload-start',
     'connect:livereload',
     'open',
