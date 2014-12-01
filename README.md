@@ -39,7 +39,8 @@ to start server
 grunt server
 
 ```
- ## Contributors
+<h4>Contributors</h4>
+<hr/>
 
 * [@uttesh](https://twitter.com/uttesh)
  
